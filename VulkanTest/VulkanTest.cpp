@@ -11,6 +11,9 @@
 #include <vulkan/vulkan_win32.h>
 #pragma comment(lib, "vulkan-1.lib")
 
+#include "Window.h"
+
+
 void Test()
 {
     const auto layers = std::vector{ "VK_LAYER_KHRONOS_validation" };
@@ -58,6 +61,12 @@ void Test()
 int main()
 {
     Test();
+
+    auto builder = WindowBuilder();
+    auto window = builder.Create<Window>();
+
+    MSG msg;
+    while(GetMessage(&msg, NULL, 0, 0)) DispatchMessage(&msg);
 }
 
 // プログラムの実行: Ctrl + F5 または [デバッグ] > [デバッグなしで開始] メニュー
